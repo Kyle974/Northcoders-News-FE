@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Axios from 'axios';
 
 class Login extends Component {
   state = {
@@ -13,10 +14,19 @@ class Login extends Component {
           onChange={(event) => this.setState({ username: event.target.value })}
           value={this.state.username}
         />
-        <button type="submit">login</button>
+        <button onClick={this.submitUserInfo} type="submit">
+          login
+        </button>
       </form>
     );
   }
+  submitUserInfo = () => {
+    Axios.get(
+      `https://ncn2019.herokuapp.com/api/users/${this.state.username}`
+    ).then(({ data }) => {
+      this.props.loginUser(data.user);
+    });
+  };
 }
 
 export default Login;

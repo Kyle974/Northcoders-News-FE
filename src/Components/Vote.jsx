@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 
 class Vote extends Component {
-  state = { voteChange: 0, upVoted: false, downVoted: false };
+  state = { voteChange: 0 };
 
   render() {
     return (
@@ -11,13 +11,13 @@ class Vote extends Component {
           votes: {this.props.votes + this.state.voteChange}
         </p>
         <button
-          className={this.state.upVoted ? 'voted' : ''}
+          className={this.state.voteChange === 1 ? 'voted' : ''}
           onClick={this.upVote}
         >
           upvote
         </button>
         <button
-          className={this.state.downVoted ? 'voted' : ''}
+          className={this.state.voteChange === -1 ? 'voted' : ''}
           onClick={this.downVote}
         >
           downvote
@@ -31,34 +31,26 @@ class Vote extends Component {
   }
 
   upVote = () => {
-    if (!this.state.upVoted) {
+    if (this.state.voteChange !== 1) {
       Axios.patch(this.props.url, {
         inc_votes: 1,
-      }).then((data) =>
-        this.setState({ voteChange: 1, upVoted: true, downVoted: false })
-      );
+      }).then((data) => this.setState({ voteChange: 1 }));
     } else {
       Axios.patch(this.props.url, {
         inc_votes: -1,
-      }).then((data) =>
-        this.setState({ voteChange: 0, upVoted: false, downVoted: false })
-      );
+      }).then((data) => this.setState({ voteChange: 0 }));
     }
   };
 
   downVote = () => {
-    if (!this.state.downVoted) {
+    if (this.state.voteChange !== -1) {
       Axios.patch(this.props.url, {
         inc_votes: -1,
-      }).then((data) =>
-        this.setState({ voteChange: -1, downVoted: true, upVoted: false })
-      );
+      }).then((data) => this.setState({ voteChange: -1 }));
     } else {
       Axios.patch(this.props.url, {
         inc_votes: 1,
-      }).then((data) =>
-        this.setState({ voteChange: 0, downVoted: false, upVoted: false })
-      );
+      }).then((data) => this.setState({ voteChange: 0 }));
     }
   };
 }

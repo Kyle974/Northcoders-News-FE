@@ -22,7 +22,7 @@ class Article extends Component {
                 this.state.article.article_id
               }`}
             />
-            <CommentsSection article_id={this.state.article.article_id} />
+            <CommentsSection article_id={this.props.article_id} />
           </div>
         )}
       </div>

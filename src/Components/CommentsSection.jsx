@@ -1,29 +1,18 @@
 import React, { Component } from 'react';
 import Axios from 'axios';
 import Vote from './Vote';
+import AddComment from './AddComment';
 // import UserAvatar from './UserAvatar';
 
 class CommentsSection extends Component {
-  state = { comments: null, commentInput: '', commentAuthor: 'jessjelly' }; // author is hardcoded for now
+  state = { comments: null }; // author is hardcoded for now
 
   render() {
     return (
       <div>
         {this.state.comments && (
           <div>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                this.submitComment();
-              }}
-            >
-              <input
-                onChange={(event) =>
-                  this.setState({ commentInput: event.target.value })
-                }
-              />
-              <button>comment</button>
-            </form>
+            <AddComment article_id={this.props.article_id} />
             <div>
               {this.state.comments.map((comment) => (
                 <div key={comment.comment_id}>
@@ -52,18 +41,6 @@ class CommentsSection extends Component {
       }/comments`
     ).then(({ data }) => this.setState({ comments: data.comments }));
   }
-
-  submitComment = () => {
-    Axios.post(
-      `https://ncn2019.herokuapp.com/api/articles/${
-        this.props.article_id
-      }/comments`,
-      {
-        author: this.state.commentAuthor,
-        body: this.state.commentInput,
-      }
-    ).then((data) => console.log(data));
-  };
 }
 
 export default CommentsSection;
