@@ -5,14 +5,18 @@ import AddComment from './AddComment';
 // import UserAvatar from './UserAvatar';
 
 class CommentsSection extends Component {
-  state = { comments: null }; // author is hardcoded for now
+  state = { comments: null };
 
   render() {
     return (
       <div>
         {this.state.comments && (
           <div>
-            <AddComment article_id={this.props.article_id} />
+            <AddComment
+              article_id={this.props.article_id}
+              showNewComment={this.showNewComment}
+              loggedInUser={this.props.loggedInUser}
+            />
             <div>
               {this.state.comments.map((comment) => (
                 <div key={comment.comment_id}>
@@ -35,12 +39,18 @@ class CommentsSection extends Component {
   }
 
   componentDidMount() {
+    this.setState({ loggedInUser: this.state.loggedInUser });
+
     Axios.get(
       `https://ncn2019.herokuapp.com/api/articles/${
         this.props.article_id
       }/comments`
     ).then(({ data }) => this.setState({ comments: data.comments }));
   }
+
+  showNewComment = (newComment) => {
+    this.setState({ comments: [newComment, ...this.state.comments] });
+  };
 }
 
 export default CommentsSection;

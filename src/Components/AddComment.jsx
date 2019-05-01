@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 
 class AddComment extends Component {
-  state = { commentInput: '', commentAuthor: 'jessjelly' }; // author is hardcoded for now
+  state = { commentInput: '' };
 
   render() {
     return (
       <div>
-        {this.state.commentAuthor && (
+        {
           <div>
             <form
               onSubmit={(event) => {
@@ -16,6 +16,7 @@ class AddComment extends Component {
               }}
             >
               <input
+                value={this.state.commentInput}
                 onChange={(event) =>
                   this.setState({ commentInput: event.target.value })
                 }
@@ -23,25 +24,33 @@ class AddComment extends Component {
               <button>comment</button>
             </form>
           </div>
-        )}
+        }
       </div>
     );
   }
 
-  // componentDidMount() {
-
-  // }
+  componentDidMount() {
+    this.setState({ loggedInUser: this.props.loggedInUser });
+  }
 
   submitComment = () => {
-    Axios.post(
-      `https://ncn2019.herokuapp.com/api/articles/${
-        this.props.article_id
-      }/comments`,
-      {
-        author: this.state.commentAuthor,
-        body: this.state.commentInput,
-      }
-    ).then((data) => console.log(data));
+    if (this.props.loggedInUser) {
+      Axios.post(
+        `https://ncn2019.herokuapp.com/api/articles/${
+          this.props.article_id
+        }/comments`,
+        {
+          author: this.props.loggedInUser.username,
+          body: this.state.commentInput,
+        }
+      ).then(({ data }) => {
+        this.props.showNewComment(data.comment);
+        this.setState({ commentInput: '' });
+      });
+      // .then(() => );
+    } else {
+      console.log('a bad thing happened....');
+    }
   };
 }
 

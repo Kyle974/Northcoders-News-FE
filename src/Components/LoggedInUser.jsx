@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
 class LoggedInUser extends Component {
-  state = {};
-
   render() {
     return (
       <div>

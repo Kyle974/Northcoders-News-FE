@@ -43,10 +43,22 @@ class App extends Component {
 
   loginUser = (userData) => {
     this.setState({ loggedInUser: userData });
+
+    sessionStorage.setItem(
+      'loggedInUser',
+      JSON.stringify(this.state.loggedInUser)
+    );
+
+    console.log(sessionStorage);
+
+    // const sessionData = JSON.parse(sessionStorage.getItem('loggedInUser'));
   };
 
   logoutUser = () => {
     this.setState({ loggedInUser: null });
+
+    sessionStorage.removeItem('loggedInUser');
+    console.log(sessionStorage);
   };
 }
 
