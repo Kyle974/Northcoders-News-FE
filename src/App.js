@@ -4,16 +4,17 @@ import './App.css';
 import Header from './Components/Header';
 import Login from './Components/Login';
 import NavBar from './Components/NavBar';
+import Home from './Components/Home';
 import Topics from './Components/Topics';
+import Topic from './Components/Topic';
 import Users from './Components/Users';
-import ArticleList from './Components/ArticleList';
 import Article from './Components/Article';
 import LoggedInUser from './Components/LoggedInUser';
 
 class App extends Component {
   state = {
     loggedInUser: null,
-    sortBy: 'hottest',
+    sortBy: 'hottest'
   };
 
   render() {
@@ -29,12 +30,13 @@ class App extends Component {
         )}
         <NavBar />
         <Router>
-          <ArticleList path="/articles" default />
+          <Home path="/" />
           <Article
             path="/articles/:article_id"
             loggedInUser={this.state.loggedInUser}
           />
           <Topics path="/topics" />
+          <Topic path="/topics/:slug" />
           <Users path="/users" />
         </Router>
       </div>
@@ -48,17 +50,12 @@ class App extends Component {
       'loggedInUser',
       JSON.stringify(this.state.loggedInUser)
     );
-
-    console.log(sessionStorage);
-
-    // const sessionData = JSON.parse(sessionStorage.getItem('loggedInUser'));
   };
 
   logoutUser = () => {
     this.setState({ loggedInUser: null });
 
     sessionStorage.removeItem('loggedInUser');
-    console.log(sessionStorage);
   };
 }
 

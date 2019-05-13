@@ -26,18 +26,14 @@ class Vote extends Component {
     );
   }
 
-  componentDidMount() {
-    this.setState({ votes: this.props.votes });
-  }
-
   upVote = () => {
     if (this.state.voteChange !== 1) {
       Axios.patch(this.props.url, {
-        inc_votes: 1,
+        inc_votes: 1
       }).then((data) => this.setState({ voteChange: 1 }));
     } else {
       Axios.patch(this.props.url, {
-        inc_votes: -1,
+        inc_votes: -1
       }).then((data) => this.setState({ voteChange: 0 }));
     }
   };
@@ -45,11 +41,11 @@ class Vote extends Component {
   downVote = () => {
     if (this.state.voteChange !== -1) {
       Axios.patch(this.props.url, {
-        inc_votes: -1,
+        inc_votes: -1
       }).then((data) => this.setState({ voteChange: -1 }));
     } else {
       Axios.patch(this.props.url, {
-        inc_votes: 1,
+        inc_votes: 1
       }).then((data) => this.setState({ voteChange: 0 }));
     }
   };

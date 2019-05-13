@@ -6,6 +6,7 @@ class NavBar extends Component {
     return (
       <div>
         <nav>
+          <Link to="/">Home</Link>
           <Link to="/articles">Hottest</Link>
           <Link to="/articles">Best</Link>
           <Link to="/articles">Newest</Link>

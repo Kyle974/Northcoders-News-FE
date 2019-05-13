@@ -2,10 +2,11 @@ import React, { Component } from 'react';
 import Axios from 'axios';
 import Vote from './Vote';
 import AddComment from './AddComment';
+import DeleteComment from './DeleteComment';
 // import UserAvatar from './UserAvatar';
 
 class CommentsSection extends Component {
-  state = { comments: null };
+  state = { comments: null, loggedInUser: null };
 
   render() {
     return (
@@ -29,6 +30,14 @@ class CommentsSection extends Component {
                       comment.comment_id
                     }`}
                   />
+
+                  {this.state.loggedInUser && (
+                    <DeleteComment
+                      url={`https://ncn2019.herokuapp.com/api/comments/${
+                        comment.comment_id
+                      }`}
+                    />
+                  )}
                 </div>
               ))}
             </div>
@@ -39,7 +48,7 @@ class CommentsSection extends Component {
   }
 
   componentDidMount() {
-    this.setState({ loggedInUser: this.state.loggedInUser });
+    this.setState({ loggedInUser: this.props.loggedInUser });
 
     Axios.get(
       `https://ncn2019.herokuapp.com/api/articles/${

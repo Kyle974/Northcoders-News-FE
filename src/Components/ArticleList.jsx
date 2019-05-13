@@ -4,11 +4,12 @@ import Axios from 'axios';
 
 class ArticleList extends Component {
   state = { articles: null };
+
   render() {
     return (
       <div>
         {this.state.articles && (
-          <div>
+          <ul>
             {this.state.articles.map((article) => (
               <Link
                 key={article.article_id}
@@ -17,14 +18,15 @@ class ArticleList extends Component {
                 <p>{article.title}</p>
               </Link>
             ))}
-          </div>
+          </ul>
         )}
       </div>
     );
   }
+
   componentDidMount() {
-    Axios.get('https://ncn2019.herokuapp.com/api/articles').then(({ data }) =>
-      this.setState({ articles: data.articles })
+    Axios.get(`https://ncn2019.herokuapp.com/api${this.props.url}`).then(
+      ({ data }) => this.setState({ articles: data.articles })
     );
   }
 }

@@ -47,7 +47,6 @@ class AddComment extends Component {
         this.props.showNewComment(data.comment);
         this.setState({ commentInput: '' });
       });
-      // .then(() => );
     } else {
       console.log('a bad thing happened....');
     }
