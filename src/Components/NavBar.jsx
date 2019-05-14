@@ -7,9 +7,9 @@ class NavBar extends Component {
       <div>
         <nav>
           <Link to="/">Home</Link>
-          <Link to="/articles">Hottest</Link>
-          <Link to="/articles">Best</Link>
-          <Link to="/articles">Newest</Link>
+          <Link to="/articles/hottest">Hottest</Link>
+          <Link to="/articles/best">Best</Link>
+          <Link to="/articles/newest">Newest</Link>
           <Link to="/topics">Topics</Link>
           <Link to="/users">Users</Link>
         </nav>

@@ -5,6 +5,7 @@ import Header from './Components/Header';
 import Login from './Components/Login';
 import NavBar from './Components/NavBar';
 import Home from './Components/Home';
+import ArticleList from './Components/ArticleList';
 import Topics from './Components/Topics';
 import Topic from './Components/Topic';
 import Users from './Components/Users';
@@ -13,17 +14,19 @@ import LoggedInUser from './Components/LoggedInUser';
 
 class App extends Component {
   state = {
-    loggedInUser: null,
-    sortBy: 'hottest'
+    loggedInUser: null
   };
 
   render() {
     return (
       <div className="App">
         <Header />
-        {!this.state.loggedInUser && <Login loginUser={this.loginUser} />}
+        {!this.state.loggedInUser && (
+          <Login className="userLogin" loginUser={this.loginUser} />
+        )}
         {this.state.loggedInUser && (
           <LoggedInUser
+            className="userLogin"
             loggedInUser={this.state.loggedInUser}
             logoutUser={this.logoutUser}
           />
@@ -31,6 +34,9 @@ class App extends Component {
         <NavBar />
         <Router>
           <Home path="/" />
+          <ArticleList path="articles/hottest" url="?sortBy=comment_count" />
+          <ArticleList path="articles/best" url="?sortBy=votes" />
+          <ArticleList path="articles/newest" />
           <Article
             path="/articles/:article_id"
             loggedInUser={this.state.loggedInUser}

@@ -3,6 +3,7 @@ import Axios from 'axios';
 import UserAvatar from './UserAvatar';
 import Vote from './Vote';
 import CommentsSection from './CommentsSection';
+import { fetchArticles } from '../utilities';
 
 class Article extends Component {
   state = { article: null };
@@ -16,6 +17,7 @@ class Article extends Component {
             <h1>{this.state.article.title}</h1>
             <h2>by {this.state.article.author}</h2>
             <p>{this.state.article.body}</p>
+            <p>{this.state.article.timestamp}</p>
             <Vote
               votes={this.state.article.votes}
               url={`https://ncn2019.herokuapp.com/api/articles/${
@@ -33,9 +35,15 @@ class Article extends Component {
   }
 
   componentDidMount() {
-    Axios.get(
-      `https://ncn2019.herokuapp.com/api/articles/${this.props.article_id}`
-    ).then(({ data }) => this.setState({ article: data.article }));
+    // Axios.get(
+    //   `https://ncn2019.herokuapp.com/api/articles/${this.props.article_id}`
+    // ).then(({ data }) => this.setState({ article: data.article }));
+
+    console.log(this.props.article_id);
+
+    fetchArticles(this.props.article_id).then(({ data }) =>
+      this.setState({ article: data.article })
+    );
   }
 }
 

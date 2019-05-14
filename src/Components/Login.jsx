@@ -3,7 +3,7 @@ import Axios from 'axios';
 
 class Login extends Component {
   state = {
-    username: '',
+    username: 'jessjelly'
   };
   render() {
     console.log(this.state.username);

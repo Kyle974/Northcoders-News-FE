@@ -3,7 +3,7 @@ import ArticleList from './ArticleList';
 
 class Home extends Component {
   render() {
-    return <ArticleList url="/articles" />;
+    return <ArticleList url="" />;
   }
 }
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
-import Axios from 'axios';
+import { fetchArticles } from '../utilities';
 
 class ArticleList extends Component {
   state = { articles: null };
@@ -25,8 +25,12 @@ class ArticleList extends Component {
   }
 
   componentDidMount() {
-    Axios.get(`https://ncn2019.herokuapp.com/api${this.props.url}`).then(
-      ({ data }) => this.setState({ articles: data.articles })
+    // Axios.get(`https://ncn2019.herokuapp.com/api${this.props.url}`).then(
+    //   ({ data }) => this.setState({ articles: data.articles })
+    // );
+
+    fetchArticles(this.props.url).then(({ data }) =>
+      this.setState({ articles: data.articles })
     );
   }
 }
