@@ -16,6 +16,7 @@ class CommentsSection extends Component {
             <AddComment
               article_id={this.props.article_id}
               showNewComment={this.showNewComment}
+              removeDeletedComment={this.removeDeletedComment}
               loggedInUser={this.props.loggedInUser}
             />
             <div>
@@ -31,13 +32,13 @@ class CommentsSection extends Component {
                     }`}
                   />
 
-                  {this.state.loggedInUser && (
-                    <DeleteComment
-                      url={`https://ncn2019.herokuapp.com/api/comments/${
-                        comment.comment_id
-                      }`}
-                    />
-                  )}
+                  <DeleteComment
+                    comment={comment}
+                    removeDeletedComment={this.removeDeletedComment}
+                    url={`https://ncn2019.herokuapp.com/api/comments/${
+                      comment.comment_id
+                    }`}
+                  />
                 </div>
               ))}
             </div>
@@ -59,6 +60,14 @@ class CommentsSection extends Component {
 
   showNewComment = (newComment) => {
     this.setState({ comments: [newComment, ...this.state.comments] });
+  };
+
+  removeDeletedComment = (deletedComment) => {
+    this.setState({
+      comments: this.state.comments.filter(
+        (comment) => comment !== deletedComment
+      )
+    });
   };
 }
 
