@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
+import { getUser } from '../utilities';
+// import Axios from 'axios';
 
 class Login extends Component {
   state = {
@@ -21,9 +22,7 @@ class Login extends Component {
     );
   }
   submitUserInfo = () => {
-    Axios.get(
-      `https://ncn2019.herokuapp.com/api/users/${this.state.username}`
-    ).then(({ data }) => {
+    getUser(this.state.username).then(({ data }) => {
       this.props.loginUser(data.user);
     });
   };

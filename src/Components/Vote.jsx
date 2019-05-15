@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
+import { patchVotes } from '../utilities';
 
 class Vote extends Component {
   state = { voteChange: 0 };
@@ -28,25 +28,25 @@ class Vote extends Component {
 
   upVote = () => {
     if (this.state.voteChange !== 1) {
-      Axios.patch(this.props.url, {
-        inc_votes: 1
-      }).then((data) => this.setState({ voteChange: 1 }));
+      patchVotes(this.props.path, 1).then((data) =>
+        this.setState({ voteChange: 1 })
+      );
     } else {
-      Axios.patch(this.props.url, {
-        inc_votes: -1
-      }).then((data) => this.setState({ voteChange: 0 }));
+      patchVotes(this.props.path, -1).then((data) =>
+        this.setState({ voteChange: 0 })
+      );
     }
   };
 
   downVote = () => {
     if (this.state.voteChange !== -1) {
-      Axios.patch(this.props.url, {
-        inc_votes: -1
-      }).then((data) => this.setState({ voteChange: -1 }));
+      patchVotes(this.props.path, -1).then((data) =>
+        this.setState({ voteChange: -1 })
+      );
     } else {
-      Axios.patch(this.props.url, {
-        inc_votes: 1
-      }).then((data) => this.setState({ voteChange: 0 }));
+      patchVotes(this.props.path, 1).then((data) =>
+        this.setState({ voteChange: 0 })
+      );
     }
   };
 }

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
+import { getUser } from '../utilities';
 
 class UserAvatar extends Component {
   state = {
-    avatar_url: null,
+    avatar_url: null
   };
   render() {
     return (
@@ -25,9 +25,9 @@ class UserAvatar extends Component {
     );
   }
   componentDidMount() {
-    Axios.get(
-      `https://ncn2019.herokuapp.com/api/users/${this.props.username}`
-    ).then(({ data }) => this.setState({ avatar_url: data.user.avatar_url }));
+    getUser(this.props.username).then(({ data }) =>
+      this.setState({ avatar_url: data.user.avatar_url })
+    );
   }
 }
 

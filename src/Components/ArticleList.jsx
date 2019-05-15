@@ -15,7 +15,9 @@ class ArticleList extends Component {
                 key={article.article_id}
                 to={`/articles/${article.article_id}`}
               >
-                <p>{article.title}</p>
+                <h1>{article.title}</h1>
+                <p>author: {article.author}</p>
+                <p>{article.created_at}</p>
               </Link>
             ))}
           </ul>
@@ -25,11 +27,7 @@ class ArticleList extends Component {
   }
 
   componentDidMount() {
-    // Axios.get(`https://ncn2019.herokuapp.com/api${this.props.url}`).then(
-    //   ({ data }) => this.setState({ articles: data.articles })
-    // );
-
-    fetchArticles(this.props.url).then(({ data }) =>
+    fetchArticles(this.props.urlPath).then(({ data }) =>
       this.setState({ articles: data.articles })
     );
   }

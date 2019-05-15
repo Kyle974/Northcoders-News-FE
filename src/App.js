@@ -34,16 +34,19 @@ class App extends Component {
         <NavBar />
         <Router>
           <Home path="/" />
-          <ArticleList path="articles/hottest" url="?sortBy=comment_count" />
-          <ArticleList path="articles/best" url="?sortBy=votes" />
-          <ArticleList path="articles/newest" />
+          <ArticleList
+            path="articles/hottest"
+            urlPath="?sortBy=comment_count"
+          />
+          <ArticleList path="articles/best" urlPath="?sortBy=votes" />
+          <ArticleList path="articles/newest" urlPath="?sortBy=created_at" />
           <Article
             path="/articles/:article_id"
             loggedInUser={this.state.loggedInUser}
           />
           <Topics path="/topics" />
           <Topic path="/topics/:slug" />
-          <Users path="/users" />
+          <Users path="/users" user={this.state.loggedInUser} />
         </Router>
       </div>
     );

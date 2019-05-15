@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Axios from 'axios';
+import { postComment } from '../utilities';
 
 class AddComment extends Component {
   state = { commentInput: '' };
@@ -35,14 +35,10 @@ class AddComment extends Component {
 
   submitComment = () => {
     if (this.props.loggedInUser) {
-      Axios.post(
-        `https://ncn2019.herokuapp.com/api/articles/${
-          this.props.article_id
-        }/comments`,
-        {
-          author: this.props.loggedInUser.username,
-          body: this.state.commentInput,
-        }
+      postComment(
+        this.props.article_id,
+        this.props.loggedInUser.username,
+        this.state.commentInput
       ).then(({ data }) => {
         this.props.showNewComment(data.comment);
         this.setState({ commentInput: '' });

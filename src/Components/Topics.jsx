@@ -6,7 +6,6 @@ class Topics extends Component {
   state = { topics: null };
 
   render() {
-    console.log(this.state.topics);
     return (
       <div>
         <h1>Topics</h1>
