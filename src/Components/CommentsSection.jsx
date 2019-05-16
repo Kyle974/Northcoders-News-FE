@@ -21,20 +21,30 @@ class CommentsSection extends Component {
             />
             <div>
               {this.state.comments.map((comment) => (
-                <div key={comment.comment_id}>
-                  <UserAvatar username={comment.author} />
-                  <h3>{comment.author}</h3>
-                  <p>{comment.body}</p>
-                  <Vote
-                    votes={comment.votes}
-                    path={`comments/${comment.comment_id}`}
-                  />
+                <div className="comment" key={comment.comment_id}>
+                  <div className="commentAuthor">
+                    <div className="commentAvatar">
+                      <UserAvatar username={comment.author} />
+                    </div>
+                    <h3 className="commentAuthorInfo">{comment.author}</h3>
+                  </div>
+                  <div className="commentBody">
+                    <p>{comment.body}</p>
 
-                  <RemoveComment
-                    comment={comment}
-                    removeDeletedComment={this.removeDeletedComment}
-                    comment_id={comment.comment_id}
-                  />
+                    <Vote
+                      votes={comment.votes}
+                      path={`comments/${comment.comment_id}`}
+                      loggedInUser={this.props.loggedInUser}
+                    />
+
+                    {this.props.loggedInUser && (
+                      <RemoveComment
+                        comment={comment}
+                        removeDeletedComment={this.removeDeletedComment}
+                        comment_id={comment.comment_id}
+                      />
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
@@ -50,6 +60,11 @@ class CommentsSection extends Component {
     fetchComments(this.props.article_id).then(({ data }) =>
       this.setState({ comments: data.comments })
     );
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.loggedInUser !== this.props.loggedInUser)
+      this.setState({ loggedInUser: prevProps.loggedInUser });
   }
 
   showNewComment = (newComment) => {

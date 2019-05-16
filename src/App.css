@@ -1,36 +1,83 @@
 .App {
-  text-align: center;
-  /* display: inline; */
-  /* display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  display: grid;
+  grid-template-rows: 20vh 10vh 70vh;
   grid-template-areas:
-    'left header right'
-    'left mid right'
-    'left footer right'; */
+    'header'
+    'nav-bar'
+    'body';
 }
 
-.Header {
-  grid-area: 'mid';
+.appHeader {
+  grid-area: header;
+  display: grid;
+  grid-template-columns: 60vw 40vh;
+  grid-template-areas: 'title login';
+  border-bottom: 2px solid black;
 }
 
-.userLogin {
-  grid-area: 'mid';
+.appTitle {
+  color: black;
+  grid-area: title;
+  /* text-align: center; */
 }
 
-body {
-  /* background-color: #404040; */
-  /* grid-area: 50% 50%/50% 50%; */
+.appLogin {
+  grid-area: login;
+  text-align: center;
 }
 
-h1,
-h2,
-h3 {
-  text-align: left;
+.appNavBar {
+  text-align: center;
+  color: black;
+  font-weight: bold;
+  grid-area: nav-bar;
+  display: flex;
+  border-bottom: 2px solid black;
 }
 
-p {
-  text-align: left;
+.navBarItem {
+  padding: 30px;
+}
+
+.appBody {
+  color: black;
+}
+
+.article {
+  border-bottom: 1px solid black;
+}
+
+.comment {
+  display: grid;
+  grid-template-columns: 5vw 30vw 65vw;
+  grid-template-areas: '. author body';
+  border-top: 1px solid black;
+}
+
+.commentAuthor {
+  grid-area: author;
+  display: grid;
+  grid-template-rows: 70% 1fr;
+  grid-template-areas:
+    'avatar'
+    'authorInfo';
+}
+
+.commentAvatar {
+  grid-area: avatar;
+}
+
+.commentAuthorInfo {
+  grid-area: 'authorInfo';
+  text-align: center;
+}
+
+.commentBody {
+  grid-area: body;
+}
+
+.topic {
+  border-bottom: 1px solid black;
 }
 
 img {
@@ -47,9 +94,9 @@ button {
   font-weight: bold;
 }
 
-/* .voteCount {
+.voteCount {
   font-weight: bold;
-} */
+}
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -66,6 +113,23 @@ button {
   }
 }
 
-link {
-  color: white;
+a:link {
+  color: black;
+}
+
+a:visited {
+  color: dimgray;
+}
+
+a:hover {
+  color: cadetblue;
+}
+
+a:active {
+  color: darkcyan;
+}
+
+img {
+  max-height: 100%;
+  width: auto;
 }

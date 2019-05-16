@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { getUser } from '../utilities';
+import { fetchUser } from '../utilities';
 
 class UserAvatar extends Component {
   state = {
@@ -25,7 +25,7 @@ class UserAvatar extends Component {
     );
   }
   componentDidMount() {
-    getUser(this.props.username).then(({ data }) =>
+    fetchUser(this.props.username).then(({ data }) =>
       this.setState({ avatar_url: data.user.avatar_url })
     );
   }

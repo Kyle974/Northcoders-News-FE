@@ -4,14 +4,26 @@ import { Link } from '@reach/router';
 class NavBar extends Component {
   render() {
     return (
-      <div>
+      <div className="appNavBar">
         <nav>
-          <Link to="/">Home</Link>
-          <Link to="/articles/hottest">Hottest</Link>
-          <Link to="/articles/best">Best</Link>
-          <Link to="/articles/newest">Newest</Link>
-          <Link to="/topics">Topics</Link>
-          <Link to="/users">Users</Link>
+          <Link to="/" className="navBarItem">
+            Home
+          </Link>
+          <Link to="/articles/hottest" className="navBarItem">
+            Hottest
+          </Link>
+          <Link to="/articles/best" className="navBarItem">
+            Best
+          </Link>
+          <Link to="/articles/newest" className="navBarItem">
+            Newest
+          </Link>
+          <Link to="/topics" className="navBarItem">
+            Topics
+          </Link>
+          <Link to="/users" className="navBarItem">
+            Users
+          </Link>
         </nav>
       </div>
     );

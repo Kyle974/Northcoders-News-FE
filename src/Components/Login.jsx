@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { getUser } from '../utilities';
-// import Axios from 'axios';
+import { fetchUser } from '../utilities';
 
 class Login extends Component {
   state = {
@@ -9,7 +8,7 @@ class Login extends Component {
   render() {
     console.log(this.state.username);
     return (
-      <form onSubmit={(e) => e.preventDefault()}>
+      <form className="appLogin" onSubmit={(e) => e.preventDefault()}>
         <label>username:</label>
         <input
           onChange={(event) => this.setState({ username: event.target.value })}
@@ -22,7 +21,7 @@ class Login extends Component {
     );
   }
   submitUserInfo = () => {
-    getUser(this.state.username).then(({ data }) => {
+    fetchUser(this.state.username).then(({ data }) => {
       this.props.loginUser(data.user);
     });
   };

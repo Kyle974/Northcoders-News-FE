@@ -17,8 +17,10 @@ class Topics extends Component {
                 slug={topic.slug}
                 to={`/topics/${topic.slug}`}
               >
-                <h2>{topic.slug}</h2>
-                <p>{topic.description}</p>
+                <div className="topic">
+                  <h2>{topic.slug}</h2>
+                  <p>{topic.description}</p>
+                </div>
               </Link>
             ))}
           </div>

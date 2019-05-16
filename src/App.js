@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Router } from '@reach/router';
 import './App.css';
-import Header from './Components/Header';
+import Title from './Components/Title';
 import Login from './Components/Login';
 import NavBar from './Components/NavBar';
 import Home from './Components/Home';
@@ -11,6 +11,7 @@ import Topic from './Components/Topic';
 import Users from './Components/Users';
 import Article from './Components/Article';
 import LoggedInUser from './Components/LoggedInUser';
+import NotFound from './Components/NotFound';
 
 class App extends Component {
   state = {
@@ -20,19 +21,21 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Header />
-        {!this.state.loggedInUser && (
-          <Login className="userLogin" loginUser={this.loginUser} />
-        )}
-        {this.state.loggedInUser && (
-          <LoggedInUser
-            className="userLogin"
-            loggedInUser={this.state.loggedInUser}
-            logoutUser={this.logoutUser}
-          />
-        )}
+        <header className="appHeader">
+          <Title />
+          {!this.state.loggedInUser && (
+            <Login className="userLogin" loginUser={this.loginUser} />
+          )}
+          {this.state.loggedInUser && (
+            <LoggedInUser
+              className="userLogin"
+              loggedInUser={this.state.loggedInUser}
+              logoutUser={this.logoutUser}
+            />
+          )}
+        </header>
         <NavBar />
-        <Router>
+        <Router className="appBody">
           <Home path="/" />
           <ArticleList
             path="articles/hottest"
@@ -47,6 +50,7 @@ class App extends Component {
           <Topics path="/topics" />
           <Topic path="/topics/:slug" />
           <Users path="/users" user={this.state.loggedInUser} />
+          <NotFound path="/*" />
         </Router>
       </div>
     );

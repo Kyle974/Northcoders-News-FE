@@ -17,10 +17,6 @@ class Users extends Component {
     );
   }
   componentDidMount() {
-    // Axios.get('https://ncn2019.herokuapp.com/api/users/butter_bridge').then(
-    //   ({ data }) => this.setState({ user: data.user })
-    // );
-
     this.setState({ user: this.props.loggedInUser });
   }
 }

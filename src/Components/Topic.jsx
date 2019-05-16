@@ -3,7 +3,12 @@ import ArticleList from './ArticleList';
 
 class Topic extends Component {
   render() {
-    return <ArticleList urlPath={`?topic=${this.props.slug}`} />;
+    return (
+      <div>
+        <h1>{this.props.slug}</h1>
+        <ArticleList urlPath={`?topic=${this.props.slug}`} />;
+      </div>
+    );
   }
 
   componentDidMount() {}

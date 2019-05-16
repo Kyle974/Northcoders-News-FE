@@ -27,6 +27,6 @@ export const patchVotes = (path, vote) => {
   });
 };
 
-export const getUser = (username) => {
+export const fetchUser = (username) => {
   return Axios.get(`${api}users/${username}`);
 };
