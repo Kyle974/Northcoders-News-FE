@@ -27,7 +27,6 @@ class Login extends Component {
         this.props.loginUser(data.user);
       })
       .catch(({ response: { data, status } }) => {
-        console.log(data, status);
         navigate('/error', {
           state: { from: '/', msg: data.msg, status }
         });

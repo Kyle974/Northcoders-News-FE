@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { navigate } from '@reach/router';
 import UserAvatar from './UserAvatar';
 import Vote from './Vote';
 import CommentsSection from './CommentsSection';
@@ -38,12 +39,14 @@ class Article extends Component {
   }
 
   componentDidMount() {
-    fetchArticles(this.props.article_id).then(({ data }) =>
-      this.setState({ article: data.article })
-    );
-    // .catch(({ response: { data, status } }) => {
-    //   console.log(data.msg, status);
-    // });
+    fetchArticles(this.props.article_id)
+      .then(({ data }) => this.setState({ article: data.article }))
+      .catch(({ response: { data, status } }) => {
+        navigate('/error', {
+          replace: true,
+          state: { from: '/', msg: data.msg, status }
+        });
+      });
   }
 }
 

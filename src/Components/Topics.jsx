@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import { fetchTopics } from '../utilities';
 
 class Topics extends Component {
@@ -30,7 +30,14 @@ class Topics extends Component {
   }
 
   componentDidMount() {
-    fetchTopics().then(({ data }) => this.setState({ topics: data.topics }));
+    fetchTopics()
+      .then(({ data }) => this.setState({ topics: data.topics }))
+      .catch(({ response: { data, status } }) => {
+        navigate('/error', {
+          replace: true,
+          state: { from: '/', msg: data.msg, status }
+        });
+      });
   }
 }
 

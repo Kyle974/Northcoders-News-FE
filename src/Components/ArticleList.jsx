@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from '@reach/router';
+import { Link, navigate } from '@reach/router';
 import { fetchArticles } from '../utilities';
 import moment from 'moment';
 
@@ -45,9 +45,14 @@ class ArticleList extends Component {
   }
 
   componentDidMount() {
-    fetchArticles(this.props.urlPath).then(({ data }) =>
-      this.setState({ articles: data.articles })
-    );
+    fetchArticles(this.props.urlPath)
+      .then(({ data }) => this.setState({ articles: data.articles }))
+      .catch(({ response: { data, status } }) => {
+        navigate('/error', {
+          replace: true,
+          state: { from: '/', msg: data.msg, status }
+        });
+      });
   }
 }
 
