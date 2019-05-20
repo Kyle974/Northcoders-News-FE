@@ -24,9 +24,14 @@ class UserAvatar extends Component {
     );
   }
   componentDidMount() {
-    fetchUser(this.props.username).then(({ data }) =>
-      this.setState({ avatar_url: data.user.avatar_url })
-    );
+    fetchUser(this.props.username)
+      .then(({ data }) => this.setState({ avatar_url: data.user.avatar_url }))
+      .catch(() => {
+        this.setState({
+          avatar_url:
+            'https://cdn.pixabay.com/photo/2014/10/01/10/44/hedgehog-468228_960_720.jpg'
+        });
+      });
   }
 }
 

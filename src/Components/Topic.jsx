@@ -1,11 +1,11 @@
 import React from 'react';
 import ArticleList from './ArticleList';
 
-const Topic = () => {
+const Topic = (props) => {
   return (
     <div>
-      <h1>{this.props.slug}</h1>
-      <ArticleList urlPath={`?topic=${this.props.slug}`} />;
+      <h1>{props.slug}</h1>
+      <ArticleList urlPath={`?topic=${props.slug}`} />;
     </div>
   );
 };

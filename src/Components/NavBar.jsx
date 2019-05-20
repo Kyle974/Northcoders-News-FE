@@ -20,9 +20,6 @@ const NavBar = () => {
         <Link to="/topics" className="navBarItem">
           Topics
         </Link>
-        <Link to="/users" className="navBarItem">
-          Users
-        </Link>
       </nav>
     </div>
   );

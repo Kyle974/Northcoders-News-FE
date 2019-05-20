@@ -11,7 +11,7 @@ import Newest from './Components/Newest';
 // import ArticleList from './Components/ArticleList';
 import Topics from './Components/Topics';
 import Topic from './Components/Topic';
-import Users from './Components/Users';
+import User from './Components/User';
 import Article from './Components/Article';
 import LoggedInUser from './Components/LoggedInUser';
 import NotFound from './Components/NotFound';
@@ -55,7 +55,7 @@ class App extends Component {
           />
           <Topics path="/topics" />
           <Topic path="/topics/:slug" />
-          <Users path="/users" user={this.state.loggedInUser} />
+          <User path="/user" user={this.state.loggedInUser} />
           <NotFound path="/*" />
         </Router>
       </div>

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
 import { fetchArticles } from '../utilities';
+import moment from 'moment';
 
 class ArticleList extends Component {
   state = { articles: null };
@@ -23,8 +24,10 @@ class ArticleList extends Component {
                   <p>
                     <strong> author: </strong>
                     {article.author}
-                    <strong> created at: </strong>
-                    {article.created_at}
+                    <strong> created: </strong>
+                    {moment(article.created_at)
+                      .startOf('day')
+                      .fromNow()}
                   </p>
 
                   <p>

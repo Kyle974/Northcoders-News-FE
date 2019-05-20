@@ -3,6 +3,7 @@ import UserAvatar from './UserAvatar';
 import Vote from './Vote';
 import CommentsSection from './CommentsSection';
 import { fetchArticles } from '../utilities';
+import moment from 'moment';
 
 class Article extends Component {
   state = { article: null };
@@ -15,7 +16,11 @@ class Article extends Component {
             <UserAvatar username={this.state.article.author} />
             <h1>{this.state.article.title}</h1>
             <h2>by {this.state.article.author}</h2>
-            <p>{this.state.article.created_at}</p>
+            <p>
+              {moment(this.state.article.created_at)
+                .startOf('day')
+                .fromNow()}
+            </p>
             <p>{this.state.article.body}</p>
             <Vote
               votes={this.state.article.votes}
@@ -36,6 +41,9 @@ class Article extends Component {
     fetchArticles(this.props.article_id).then(({ data }) =>
       this.setState({ article: data.article })
     );
+    // .catch(({ response: { data, status } }) => {
+    //   console.log(data.msg, status);
+    // });
   }
 }
 

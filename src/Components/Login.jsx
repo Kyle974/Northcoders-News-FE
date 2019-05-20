@@ -21,9 +21,13 @@ class Login extends Component {
     );
   }
   submitUserInfo = () => {
-    fetchUser(this.state.username).then(({ data }) => {
-      this.props.loginUser(data.user);
-    });
+    fetchUser(this.state.username)
+      .then(({ data }) => {
+        this.props.loginUser(data.user);
+      })
+      .catch((response) => {
+        console.log(response);
+      });
   };
 }
 
