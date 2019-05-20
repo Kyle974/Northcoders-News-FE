@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { navigate } from '@reach/router';
 import { fetchUser } from '../utilities';
 
 class Login extends Component {
@@ -25,8 +26,11 @@ class Login extends Component {
       .then(({ data }) => {
         this.props.loginUser(data.user);
       })
-      .catch((response) => {
-        console.log(response);
+      .catch(({ response: { data, status } }) => {
+        console.log(data, status);
+        navigate('/error', {
+          state: { from: '/', msg: data.msg, status }
+        });
       });
   };
 }

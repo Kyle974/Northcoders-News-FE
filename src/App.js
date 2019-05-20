@@ -15,6 +15,7 @@ import User from './Components/User';
 import Article from './Components/Article';
 import LoggedInUser from './Components/LoggedInUser';
 import NotFound from './Components/NotFound';
+import Error from './Components/Error';
 
 class App extends Component {
   state = {
@@ -57,6 +58,7 @@ class App extends Component {
           <Topic path="/topics/:slug" />
           <User path="/user" user={this.state.loggedInUser} />
           <NotFound path="/*" />
+          <Error path="/error" />
         </Router>
       </div>
     );
