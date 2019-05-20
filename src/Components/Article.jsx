@@ -15,11 +15,12 @@ class Article extends Component {
             <UserAvatar username={this.state.article.author} />
             <h1>{this.state.article.title}</h1>
             <h2>by {this.state.article.author}</h2>
+            <p>{this.state.article.created_at}</p>
             <p>{this.state.article.body}</p>
-            <p>{this.state.article.timestamp}</p>
             <Vote
               votes={this.state.article.votes}
               path={`articles/${this.state.article.article_id}`}
+              loggedInUser={this.props.loggedInUser}
             />
             <CommentsSection
               article_id={this.props.article_id}

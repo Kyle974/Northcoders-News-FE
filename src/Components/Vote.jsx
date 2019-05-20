@@ -14,13 +14,13 @@ class Vote extends Component {
             </p>
             <button
               className={this.state.voteChange === 1 ? 'voted' : ''}
-              onClick={this.upVote}
+              onClick={() => this.handleVote(1)}
             >
               upvote
             </button>
             <button
               className={this.state.voteChange === -1 ? 'voted' : ''}
-              onClick={this.downVote}
+              onClick={() => this.handleVote(-1)}
             >
               downvote
             </button>
@@ -30,25 +30,13 @@ class Vote extends Component {
     );
   }
 
-  upVote = () => {
-    if (this.state.voteChange !== 1) {
+  handleVote = (vote) => {
+    if (this.state.voteChange !== vote) {
       patchVotes(this.props.path, 1).then((data) =>
-        this.setState({ voteChange: 1 })
+        this.setState({ voteChange: vote })
       );
     } else {
-      patchVotes(this.props.path, -1).then((data) =>
-        this.setState({ voteChange: 0 })
-      );
-    }
-  };
-
-  downVote = () => {
-    if (this.state.voteChange !== -1) {
-      patchVotes(this.props.path, -1).then((data) =>
-        this.setState({ voteChange: -1 })
-      );
-    } else {
-      patchVotes(this.props.path, 1).then((data) =>
+      patchVotes(this.props.path, 0 - vote).then((data) =>
         this.setState({ voteChange: 0 })
       );
     }

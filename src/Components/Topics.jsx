@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
-import Axios from 'axios';
+import { fetchTopics } from '../utilities';
 
 class Topics extends Component {
   state = { topics: null };
@@ -30,9 +30,7 @@ class Topics extends Component {
   }
 
   componentDidMount() {
-    Axios.get('https://ncn2019.herokuapp.com/api/topics').then(({ data }) =>
-      this.setState({ topics: data.topics })
-    );
+    fetchTopics().then(({ data }) => this.setState({ topics: data.topics }));
   }
 }
 

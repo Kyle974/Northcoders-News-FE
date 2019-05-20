@@ -5,7 +5,10 @@ import Title from './Components/Title';
 import Login from './Components/Login';
 import NavBar from './Components/NavBar';
 import Home from './Components/Home';
-import ArticleList from './Components/ArticleList';
+import Hottest from './Components/Hottest';
+import Best from './Components/Best';
+import Newest from './Components/Newest';
+// import ArticleList from './Components/ArticleList';
 import Topics from './Components/Topics';
 import Topic from './Components/Topic';
 import Users from './Components/Users';
@@ -37,12 +40,15 @@ class App extends Component {
         <NavBar />
         <Router className="appBody">
           <Home path="/" />
-          <ArticleList
+          <Hottest path="articles/hottest" />
+          <Best path="articles/best" />
+          <Newest path="articles/newest" />
+          {/* <ArticleList
             path="articles/hottest"
-            urlPath="?sortBy=comment_count"
-          />
-          <ArticleList path="articles/best" urlPath="?sortBy=votes" />
-          <ArticleList path="articles/newest" urlPath="?sortBy=created_at" />
+            urlPath="?sort_by=comment_count"
+          /> */}
+          {/* <ArticleList path="articles/best" urlPath="?sort_by=votes" /> */}
+          {/* <ArticleList path="articles/newest" urlPath="?sort_by=created_at" /> */}
           <Article
             path="/articles/:article_id"
             loggedInUser={this.state.loggedInUser}
@@ -54,6 +60,12 @@ class App extends Component {
         </Router>
       </div>
     );
+  }
+
+  componentDidMount() {
+    this.setState({
+      loggedInUser: JSON.parse(sessionStorage.getItem('loggedInUser'))
+    });
   }
 
   loginUser = (userData) => {

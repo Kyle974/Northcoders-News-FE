@@ -8,17 +8,16 @@ class UserAvatar extends Component {
   render() {
     return (
       <div>
-        {this.state.avatar_url && (
+        {this.state.avatar_url ? (
+          <div>
+            <img src={this.state.avatar_url} alt="not found" />
+          </div>
+        ) : (
           <div>
             <img
-              src={this.state.avatar_url}
+              src="https://cdn.pixabay.com/photo/2014/10/01/10/44/hedgehog-468228_960_720.jpg"
               alt="not found"
-              onError={() => {
-                this.src =
-                  'https://cdn.pixabay.com/photo/2014/10/01/10/44/hedgehog-468228_960_720.jpg';
-              }}
             />
-            {/* 'https://cdn.pixabay.com/photo/2014/10/01/10/44/hedgehog-468228_960_720.jpg' */}
           </div>
         )}
       </div>

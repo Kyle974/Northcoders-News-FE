@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
 import { fetchArticles } from '../utilities';
-import dayjs from 'dayjs';
 
 class ArticleList extends Component {
   state = { articles: null };
@@ -18,8 +17,21 @@ class ArticleList extends Component {
               >
                 <div className="article">
                   <h2>{article.title}</h2>
-                  <p>author: {article.author}</p>
-                  <p>{article.created_at}</p>
+                  <p>
+                    <strong>topic: </strong> {article.topic}
+                  </p>
+                  <p>
+                    <strong> author: </strong>
+                    {article.author}
+                    <strong> created at: </strong>
+                    {article.created_at}
+                  </p>
+
+                  <p>
+                    <strong>votes: </strong> {article.votes}
+                    <strong> comments: </strong> {article.comment_count}
+                  </p>
+                  <p />
                 </div>
               </Link>
             ))}
