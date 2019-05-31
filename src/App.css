@@ -2,16 +2,16 @@
   display: grid;
   grid-template-rows: 20vh 10vh 70vh;
   grid-template-areas:
-    'header'
-    'nav-bar'
-    'body';
+    "header"
+    "nav-bar"
+    "body";
 }
 
 .appHeader {
   grid-area: header;
   display: grid;
   grid-template-columns: 60vw 40vh;
-  grid-template-areas: 'title login';
+  grid-template-areas: "title login";
   border-bottom: 2px solid black;
 }
 
@@ -50,7 +50,7 @@
 .comment {
   display: grid;
   grid-template-columns: 5vw 30vw 65vw;
-  grid-template-areas: '. author body';
+  grid-template-areas: ". author body";
   border-top: 1px solid black;
 }
 
@@ -59,8 +59,8 @@
   display: grid;
   grid-template-rows: 70% 1fr;
   grid-template-areas:
-    'avatar'
-    'authorInfo';
+    "avatar"
+    "authorInfo";
 }
 
 .commentAvatar {
@@ -68,7 +68,7 @@
 }
 
 .commentAuthorInfo {
-  grid-area: 'authorInfo';
+  grid-area: "authorInfo";
   text-align: center;
 }
 
@@ -76,9 +76,9 @@
   grid-area: body;
 }
 
-.topic {
+/* .topic {
   border-bottom: 1px solid black;
-}
+} */
 
 img {
   max-width: 200px;

@@ -12,3 +12,7 @@ Here are a list of implemented features for you to try out:
 • you can login to a user account (the username 'jessjelly' will automatically appear in this login form in the top right, no password needed)
 
 • once you're logged in you can added upvote or downvote articles and comments, add new comments, and delete comments (but only those authored by the current logged in user)
+
+deployed version: https://youthful-hugle-90d6a9.netlify.com/
+
+back-end repo: https://github.com/Kyle974/Northcoders-News

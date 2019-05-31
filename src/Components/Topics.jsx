@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
-import { Link, navigate } from '@reach/router';
-import { fetchTopics } from '../utilities';
+import React, { Component } from "react";
+import { Link, navigate } from "@reach/router";
+import { fetchTopics } from "../utilities";
+import { Card } from "@material-ui/core";
 
 class Topics extends Component {
   state = { topics: null };
@@ -10,20 +11,16 @@ class Topics extends Component {
       <div>
         <h1>Topics</h1>
         {this.state.topics && (
-          <div>
+          <ul>
             {this.state.topics.map((topic) => (
-              <Link
-                key={topic.slug}
-                slug={topic.slug}
-                to={`/topics/${topic.slug}`}
-              >
-                <div className="topic">
+              <Card key={topic.slug}>
+                <Link slug={topic.slug} to={`/topics/${topic.slug}`}>
                   <h2>{topic.slug}</h2>
                   <p>{topic.description}</p>
-                </div>
-              </Link>
+                </Link>
+              </Card>
             ))}
-          </div>
+          </ul>
         )}
       </div>
     );
@@ -33,9 +30,9 @@ class Topics extends Component {
     fetchTopics()
       .then(({ data }) => this.setState({ topics: data.topics }))
       .catch(({ response: { data, status } }) => {
-        navigate('/error', {
+        navigate("/error", {
           replace: true,
-          state: { from: '/', msg: data.msg, status }
+          state: { from: "/", msg: data.msg, status }
         });
       });
   }

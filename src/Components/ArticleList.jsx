@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import { Link, navigate } from '@reach/router';
-import { fetchArticles } from '../utilities';
-import moment from 'moment';
+import React, { Component } from "react";
+import { Link, navigate } from "@reach/router";
+import { Card } from "@material-ui/core";
+import { fetchArticles } from "../utilities";
+import moment from "moment";
 
 class ArticleList extends Component {
   state = { articles: null };
@@ -12,11 +13,8 @@ class ArticleList extends Component {
         {this.state.articles && (
           <ul>
             {this.state.articles.map((article) => (
-              <Link
-                key={article.article_id}
-                to={`/articles/${article.article_id}`}
-              >
-                <div className="article">
+              <Card key={article.article_id}>
+                <Link to={`/articles/${article.article_id}`}>
                   <h2>{article.title}</h2>
                   <p>
                     <strong>topic: </strong> {article.topic}
@@ -26,7 +24,7 @@ class ArticleList extends Component {
                     {article.author}
                     <strong> created: </strong>
                     {moment(article.created_at)
-                      .startOf('day')
+                      .startOf("day")
                       .fromNow()}
                   </p>
 
@@ -35,8 +33,9 @@ class ArticleList extends Component {
                     <strong> comments: </strong> {article.comment_count}
                   </p>
                   <p />
-                </div>
-              </Link>
+                </Link>
+                >
+              </Card>
             ))}
           </ul>
         )}
@@ -48,9 +47,9 @@ class ArticleList extends Component {
     fetchArticles(this.props.urlPath)
       .then(({ data }) => this.setState({ articles: data.articles }))
       .catch(({ response: { data, status } }) => {
-        navigate('/error', {
+        navigate("/error", {
           replace: true,
-          state: { from: '/', msg: data.msg, status }
+          state: { from: "/", msg: data.msg, status }
         });
       });
   }
