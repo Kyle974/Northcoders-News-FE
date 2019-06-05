@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import Vote from './Vote';
-import AddComment from './AddComment';
-import RemoveComment from './RemoveComment';
-import { fetchComments } from '../utilities';
-import UserAvatar from './UserAvatar';
+import React, { Component } from "react";
+import Vote from "./Vote";
+import AddComment from "./AddComment";
+import RemoveComment from "./RemoveComment";
+import { fetchComments } from "../utilities";
+import UserAvatar from "./UserAvatar";
+import { Card, CardContent } from "@material-ui/core";
 
 class CommentsSection extends Component {
   state = {
@@ -23,32 +24,41 @@ class CommentsSection extends Component {
             />
             <div>
               {this.state.comments.map((comment) => (
-                <div className="comment" key={comment.comment_id}>
-                  <div className="commentAuthor">
-                    <div className="commentAvatar">
+                <Card style={{ display: "flex" }} key={comment.comment_id}>
+                  <div
+                    style={{
+                      display: "flex",
+                      flexDirection: "row"
+                    }}
+                  >
+                    <CardContent style={{ width: 150 }}>
                       <UserAvatar username={comment.author} />
-                    </div>
-                    <h3 className="commentAuthorInfo">{comment.author}</h3>
-                  </div>
-                  <div className="commentBody">
-                    <p>{comment.body}</p>
+                    </CardContent>
 
-                    <Vote
-                      votes={comment.votes}
-                      path={`comments/${comment.comment_id}`}
-                      loggedInUser={this.props.loggedInUser}
-                    />
+                    <CardContent
+                      style={{
+                        flex: "1 0 auto"
+                      }}
+                    >
+                      <h3>{comment.author}</h3>
+                      <p>{comment.body}</p>
+                      <Vote
+                        votes={comment.votes}
+                        path={`comments/${comment.comment_id}`}
+                        loggedInUser={this.props.loggedInUser}
+                      />
 
-                    {this.props.loggedInUser &&
-                      this.props.loggedInUser.username === comment.author && (
-                        <RemoveComment
-                          comment={comment}
-                          removeDeletedComment={this.removeDeletedComment}
-                          comment_id={comment.comment_id}
-                        />
-                      )}
+                      {this.props.loggedInUser &&
+                        this.props.loggedInUser.username === comment.author && (
+                          <RemoveComment
+                            comment={comment}
+                            removeDeletedComment={this.removeDeletedComment}
+                            comment_id={comment.comment_id}
+                          />
+                        )}
+                    </CardContent>
                   </div>
-                </div>
+                </Card>
               ))}
             </div>
           </div>

@@ -11,7 +11,7 @@ class ArticleList extends Component {
     return (
       <div>
         {this.state.articles && (
-          <ul>
+          <div>
             {this.state.articles.map((article) => (
               <Card key={article.article_id}>
                 <Link to={`/articles/${article.article_id}`}>
@@ -34,10 +34,9 @@ class ArticleList extends Component {
                   </p>
                   <p />
                 </Link>
-                >
               </Card>
             ))}
-          </ul>
+          </div>
         )}
       </div>
     );

@@ -11,7 +11,7 @@ class Topics extends Component {
       <div>
         <h1>Topics</h1>
         {this.state.topics && (
-          <ul>
+          <div>
             {this.state.topics.map((topic) => (
               <Card key={topic.slug}>
                 <Link slug={topic.slug} to={`/topics/${topic.slug}`}>
@@ -20,7 +20,7 @@ class Topics extends Component {
                 </Link>
               </Card>
             ))}
-          </ul>
+          </div>
         )}
       </div>
     );

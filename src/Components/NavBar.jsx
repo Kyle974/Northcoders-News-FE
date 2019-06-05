@@ -1,10 +1,11 @@
-import React from 'react';
-import { Link } from '@reach/router';
+import React from "react";
+import { Link } from "@reach/router";
+import { AppBar, Grid } from "@material-ui/core";
 
 const NavBar = () => {
   return (
-    <div className="appNavBar">
-      <nav>
+    <AppBar position="static" color="default">
+      <Grid justify="center">
         <Link to="/" className="navBarItem">
           Home
         </Link>
@@ -20,8 +21,8 @@ const NavBar = () => {
         <Link to="/topics" className="navBarItem">
           Topics
         </Link>
-      </nav>
-    </div>
+      </Grid>
+    </AppBar>
   );
 };
 

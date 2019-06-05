@@ -1,21 +1,22 @@
-import React, { Component } from 'react';
-import { Router } from '@reach/router';
-import './App.css';
-import Title from './Components/Title';
-import Login from './Components/Login';
-import NavBar from './Components/NavBar';
-import Home from './Components/Home';
-import Hottest from './Components/Hottest';
-import Best from './Components/Best';
-import Newest from './Components/Newest';
+import React, { Component } from "react";
+import { Router } from "@reach/router";
+import "./App.css";
+import Title from "./Components/Title";
+import Login from "./Components/Login";
+import NavBar from "./Components/NavBar";
+import Home from "./Components/Home";
+import Hottest from "./Components/Hottest";
+import Best from "./Components/Best";
+import Newest from "./Components/Newest";
 // import ArticleList from './Components/ArticleList';
-import Topics from './Components/Topics';
-import Topic from './Components/Topic';
-import User from './Components/User';
-import Article from './Components/Article';
-import LoggedInUser from './Components/LoggedInUser';
-import NotFound from './Components/NotFound';
-import Error from './Components/Error';
+import Topics from "./Components/Topics";
+import Topic from "./Components/Topic";
+import User from "./Components/User";
+import Article from "./Components/Article";
+import LoggedInUser from "./Components/LoggedInUser";
+import NotFound from "./Components/NotFound";
+import Error from "./Components/Error";
+import { AppBar } from "@material-ui/core";
 
 class App extends Component {
   state = {
@@ -66,7 +67,7 @@ class App extends Component {
 
   componentDidMount() {
     this.setState({
-      loggedInUser: JSON.parse(sessionStorage.getItem('loggedInUser'))
+      loggedInUser: JSON.parse(sessionStorage.getItem("loggedInUser"))
     });
   }
 
@@ -74,7 +75,7 @@ class App extends Component {
     this.setState({ loggedInUser: userData });
 
     sessionStorage.setItem(
-      'loggedInUser',
+      "loggedInUser",
       JSON.stringify(this.state.loggedInUser)
     );
   };
@@ -82,7 +83,7 @@ class App extends Component {
   logoutUser = () => {
     this.setState({ loggedInUser: null });
 
-    sessionStorage.removeItem('loggedInUser');
+    sessionStorage.removeItem("loggedInUser");
   };
 }
 
