@@ -31,7 +31,7 @@ class CommentsSection extends Component {
                       flexDirection: "row"
                     }}
                   >
-                    <CardContent style={{ width: 150 }}>
+                    <CardContent style={{ width: 100 }}>
                       <UserAvatar username={comment.author} />
                     </CardContent>
 

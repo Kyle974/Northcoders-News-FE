@@ -5,7 +5,7 @@ import { AppBar, Grid } from "@material-ui/core";
 const NavBar = () => {
   return (
     <AppBar position="static" color="default">
-      <Grid justify="center">
+      <Grid container justify="space-around">
         <Link to="/" className="navBarItem">
           Home
         </Link>
