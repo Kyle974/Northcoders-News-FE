@@ -37,7 +37,8 @@ class CommentsSection extends Component {
 
                     <CardContent
                       style={{
-                        flex: "1 0 auto"
+                        flex: "1 0 auto",
+                        width: "100%"
                       }}
                     >
                       <h3>{comment.author}</h3>

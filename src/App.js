@@ -8,7 +8,6 @@ import Home from "./Components/Home";
 import Hottest from "./Components/Hottest";
 import Best from "./Components/Best";
 import Newest from "./Components/Newest";
-// import ArticleList from './Components/ArticleList';
 import Topics from "./Components/Topics";
 import Topic from "./Components/Topic";
 import User from "./Components/User";
@@ -16,7 +15,6 @@ import Article from "./Components/Article";
 import LoggedInUser from "./Components/LoggedInUser";
 import NotFound from "./Components/NotFound";
 import Error from "./Components/Error";
-import { AppBar } from "@material-ui/core";
 
 class App extends Component {
   state = {
@@ -45,12 +43,6 @@ class App extends Component {
           <Hottest path="articles/hottest" />
           <Best path="articles/best" />
           <Newest path="articles/newest" />
-          {/* <ArticleList
-            path="articles/hottest"
-            urlPath="?sort_by=comment_count"
-          /> */}
-          {/* <ArticleList path="articles/best" urlPath="?sort_by=votes" /> */}
-          {/* <ArticleList path="articles/newest" urlPath="?sort_by=created_at" /> */}
           <Article
             path="/articles/:article_id"
             loggedInUser={this.state.loggedInUser}

@@ -7,19 +7,19 @@ const NavBar = () => {
     <AppBar position="static" color="default">
       <Grid container justify="space-around">
         <Link to="/" className="navBarItem">
-          Home
+          <strong>Home</strong>
         </Link>
         <Link to="/articles/hottest" className="navBarItem">
-          Hottest
+          <strong>Hottest</strong>
         </Link>
         <Link to="/articles/best" className="navBarItem">
-          Best
+          <strong>Best</strong>
         </Link>
         <Link to="/articles/newest" className="navBarItem">
-          Newest
+          <strong>Newest</strong>
         </Link>
         <Link to="/topics" className="navBarItem">
-          Topics
+          <strong>Topics</strong>
         </Link>
       </Grid>
     </AppBar>
