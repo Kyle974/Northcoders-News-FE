@@ -15,24 +15,26 @@ class ArticleList extends Component {
             {this.state.articles.map((article) => (
               <Card key={article.article_id}>
                 <Link to={`/articles/${article.article_id}`}>
-                  <h2>{article.title}</h2>
-                  <p>
-                    <strong>topic: </strong> {article.topic}
-                  </p>
-                  <p>
-                    <strong> author: </strong>
-                    {article.author}
-                    <strong> created: </strong>
-                    {moment(article.created_at)
-                      .startOf("day")
-                      .fromNow()}
-                  </p>
+                  <div style={{ padding: "12px" }}>
+                    <h2>{article.title}</h2>
+                    <p>
+                      <strong>topic: </strong> {article.topic}
+                    </p>
+                    <p>
+                      <strong> author: </strong>
+                      {article.author}
+                      <strong> created: </strong>
+                      {moment(article.created_at)
+                        .startOf("day")
+                        .fromNow()}
+                    </p>
 
-                  <p>
-                    <strong>votes: </strong> {article.votes}
-                    <strong> comments: </strong> {article.comment_count}
-                  </p>
-                  <p />
+                    <p>
+                      <strong>votes: </strong> {article.votes}
+                      <strong> comments: </strong> {article.comment_count}
+                    </p>
+                    <p />
+                  </div>
                 </Link>
               </Card>
             ))}

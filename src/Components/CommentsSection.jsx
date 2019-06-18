@@ -37,12 +37,11 @@ class CommentsSection extends Component {
 
                     <CardContent
                       style={{
-                        flex: "1 0 auto",
-                        width: "100%"
+                        flex: "1 1 auto"
                       }}
                     >
                       <h3>{comment.author}</h3>
-                      <p>{comment.body}</p>
+                      <p style={{ width: "90%" }}>{comment.body}</p>
                       <Vote
                         votes={comment.votes}
                         path={`comments/${comment.comment_id}`}

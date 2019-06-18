@@ -9,14 +9,18 @@ class Topics extends Component {
   render() {
     return (
       <div>
-        <h1>Topics</h1>
+        <div style={{ padding: "12px" }}>
+          <h1>Topics</h1>
+        </div>
         {this.state.topics && (
           <div>
             {this.state.topics.map((topic) => (
               <Card key={topic.slug}>
                 <Link slug={topic.slug} to={`/topics/${topic.slug}`}>
-                  <h2>{topic.slug}</h2>
-                  <p>{topic.description}</p>
+                  <div style={{ padding: "12px" }}>
+                    <h2>{topic.slug}</h2>
+                    <p>{topic.description}</p>
+                  </div>
                 </Link>
               </Card>
             ))}
